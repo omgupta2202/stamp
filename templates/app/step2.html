@@ -1,0 +1,351 @@
+<!-- data_collector/templates/data_collector/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <h3>Welcome</h3>
+    Please be very precise with every data you give. Also, follow the instructions.
+    <br/><h4> Step 2:</h4><br/>
+    <label >Login:</label>
+    <form method="POST" action="{% url 'login_view_open' %}" target="_blank">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Username" />
+      <input type="password" name="password" placeholder="Password" />
+      <button type="submit" id="loginButton">Login</button>
+    </form><br />
+    
+    <label for="office_details"
+        >Please wait for a while before clicking on Show Captcha-</label
+      ><br />
+    <form id="usernameForm">
+      <label for="usernameInput">Enter Username:</label>
+      <input
+        type="text"
+        id="usernameInput"
+        name="username"
+        placeholder="Username"
+      />
+      <button type="button" id="showCaptchaButton">Show Captcha</button>
+    </form><br />
+    <label for="office_details"
+        >Note- If Show Captcha button clicked early or captcha not displaying refresh the page and try again.</label
+      ><br />
+
+    <img id="captchaImage" src="" alt="Captcha" style="display: none" />
+    <br />
+    <form method="POST" action="{% url 'save_captcha' %}" target="_blank">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Username" />
+      <input type="captcha" name="captcha" placeholder="Capthca" />
+      <input type="submit" value="Submit" />
+    </form><br />
+    
+    {% csrf_token %}
+    <script>
+      const csrfToken = document.cookie.match(/csrftoken=([^;]+)/)[1];
+      document
+        .getElementById("showCaptchaButton")
+        .addEventListener("click", function () {
+          // Get the username entered by the user
+          var username = document.getElementById("usernameInput").value;
+
+          // Check if a username is entered
+          if (username.trim() === "") {
+            alert("Please enter a username.");
+            return;
+          }
+
+          // Construct the URL for the captcha image based on the entered username
+          var captchaImage = document.getElementById("captchaImage");
+          captchaImage.src = `/media/captcha_${username}.png`;
+          captchaImage.style.display = "block";
+        });
+    </script>
+  </body>
+</html>
+
+
+<!-- data_collector/templates/data_collector/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <h3>Welcome</h3>
+    Please be very precise with every data you give. Also, follow the instructions.
+    <br/><h4> Step 1:</h4><br/>
+    <!-- Include the user input fields -->
+    <form method="post" action="{% url 'save_search_data' %}">
+      {% csrf_token %}
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" /><br />
+
+      <label for="office_details"
+        >OFFICE DETAILS WHERE DOCUMENT WAS REGISTERED *-</label
+      ><br />
+
+      <label for="district_registered"
+        >District (where document was registered) *</label
+      >
+      <select id="district_registered" name="district_registered" required>
+        <option value="" selected>Select</option>
+        <option value="51~AGAR MALWA">AGAR MALWA</option>
+        <option value="49~ALIRAJPUR">ALIRAJPUR</option>
+        <option value="46~ANUPPUR">ANUPPUR</option>
+        <option value="47~ASHOK NAGAR">ASHOK NAGAR</option>
+        <option value="1~BALAGHAT">BALAGHAT</option>
+        <option value="2~BARWANI">BARWANI</option>
+        <option value="3~BETUL">BETUL</option>
+        <option value="4~BHIND">BHIND</option>
+        <option value="5~BHOPAL">BHOPAL</option>
+        <option value="48~BURHANPUR">BURHANPUR</option>
+        <option value="6~CHHATARPUR">CHHATARPUR</option>
+        <option value="7~CHHINDWARA">CHHINDWARA</option>
+        <option value="8~DAMOH">DAMOH</option>
+        <option value="9~DATIA">DATIA</option>
+        <option value="10~DEWAS">DEWAS</option>
+        <option value="11~DHAR">DHAR</option>
+        <option value="12~DINDORI">DINDORI</option>
+        <option value="13~GUNA">GUNA</option>
+        <option value="14~GWALIOR">GWALIOR</option>
+        <option value="15~HARDA">HARDA</option>
+        <option value="17~INDORE">INDORE</option>
+        <option value="18~JABALPUR">JABALPUR</option>
+        <option value="19~JHABUA">JHABUA</option>
+        <option value="20~KATNI">KATNI</option>
+        <option value="21~KHANDWA">KHANDWA</option>
+        <option value="22~KHARGONE">KHARGONE</option>
+        <option value="23~MANDLA">MANDLA</option>
+        <option value="24~MANDSAUR">MANDSAUR</option>
+        <option value="25~MORENA">MORENA</option>
+        <option value="16~NARMADAPURAM">NARMADAPURAM</option>
+        <option value="26~NARSINGHPUR">NARSINGHPUR</option>
+        <option value="27~NEEMUCH">NEEMUCH</option>
+        <option value="52~NIWARI">NIWARI</option>
+        <option value="28~PANNA">PANNA</option>
+        <option value="29~RAISEN">RAISEN</option>
+        <option value="30~RAJGARH">RAJGARH</option>
+        <option value="31~RATLAM">RATLAM</option>
+        <option value="32~REWA">REWA</option>
+        <option value="33~SAGAR">SAGAR</option>
+        <option value="34~SATNA">SATNA</option>
+        <option value="35~SEHORE">SEHORE</option>
+        <option value="36~SEONI">SEONI</option>
+        <option value="37~SHAHDOL">SHAHDOL</option>
+        <option value="38~SHAJAPUR">SHAJAPUR</option>
+        <option value="40~SHEOPUR">SHEOPUR</option>
+        <option value="39~SHIVPURI">SHIVPURI</option>
+        <option value="41~SIDHI">SIDHI</option>
+        <option value="50~SINGROLI">SINGROLI</option>
+        <option value="42~TIKAMGARH">TIKAMGARH</option>
+        <option value="43~UJJAIN">UJJAIN</option>
+        <option value="44~UMARIA">UMARIA</option>
+        <option value="45~VIDISHA">VIDISHA</option></select
+      ><br />
+
+      <label for="district_search">District BEING USED FOR SEARCH *</label>
+      <select id="district_search" name="district_search" required>
+        <option value="" selected>Select</option>
+        <option value="51~AGAR MALWA">AGAR MALWA</option>
+        <option value="49~ALIRAJPUR">ALIRAJPUR</option>
+        <option value="46~ANUPPUR">ANUPPUR</option>
+        <option value="47~ASHOK NAGAR">ASHOK NAGAR</option>
+        <option value="1~BALAGHAT">BALAGHAT</option>
+        <option value="2~BARWANI">BARWANI</option>
+        <option value="3~BETUL">BETUL</option>
+        <option value="4~BHIND">BHIND</option>
+        <option value="5~BHOPAL">BHOPAL</option>
+        <option value="48~BURHANPUR">BURHANPUR</option>
+        <option value="6~CHHATARPUR">CHHATARPUR</option>
+        <option value="7~CHHINDWARA">CHHINDWARA</option>
+        <option value="8~DAMOH">DAMOH</option>
+        <option value="9~DATIA">DATIA</option>
+        <option value="10~DEWAS">DEWAS</option>
+        <option value="11~DHAR">DHAR</option>
+        <option value="12~DINDORI">DINDORI</option>
+        <option value="13~GUNA">GUNA</option>
+        <option value="14~GWALIOR">GWALIOR</option>
+        <option value="15~HARDA">HARDA</option>
+        <option value="17~INDORE">INDORE</option>
+        <option value="18~JABALPUR">JABALPUR</option>
+        <option value="19~JHABUA">JHABUA</option>
+        <option value="20~KATNI">KATNI</option>
+        <option value="21~KHANDWA">KHANDWA</option>
+        <option value="22~KHARGONE">KHARGONE</option>
+        <option value="23~MANDLA">MANDLA</option>
+        <option value="24~MANDSAUR">MANDSAUR</option>
+        <option value="25~MORENA">MORENA</option>
+        <option value="16~NARMADAPURAM">NARMADAPURAM</option>
+        <option value="26~NARSINGHPUR">NARSINGHPUR</option>
+        <option value="27~NEEMUCH">NEEMUCH</option>
+        <option value="52~NIWARI">NIWARI</option>
+        <option value="28~PANNA">PANNA</option>
+        <option value="29~RAISEN">RAISEN</option>
+        <option value="30~RAJGARH">RAJGARH</option>
+        <option value="31~RATLAM">RATLAM</option>
+        <option value="32~REWA">REWA</option>
+        <option value="33~SAGAR">SAGAR</option>
+        <option value="34~SATNA">SATNA</option>
+        <option value="35~SEHORE">SEHORE</option>
+        <option value="36~SEONI">SEONI</option>
+        <option value="37~SHAHDOL">SHAHDOL</option>
+        <option value="38~SHAJAPUR">SHAJAPUR</option>
+        <option value="40~SHEOPUR">SHEOPUR</option>
+        <option value="39~SHIVPURI">SHIVPURI</option>
+        <option value="41~SIDHI">SIDHI</option>
+        <option value="50~SINGROLI">SINGROLI</option>
+        <option value="42~TIKAMGARH">TIKAMGARH</option>
+        <option value="43~UJJAIN">UJJAIN</option>
+        <option value="44~UMARIA">UMARIA</option>
+        <option value="45~VIDISHA">VIDISHA</option></select
+      ><br />
+
+      <label for="search_registered_sampada"
+        >Search Document registered after 15/12/2014 (Registered through
+        SAMPADA)</label
+      >
+      <input
+        type="checkbox"
+        id="search_registered_sampada"
+        name="search_registered_sampada"
+      /><br />
+
+      <label for="financial_year"
+        >SEARCH DOCUMENTS REGISTERED BETWEEN THE FOLLOWING DATE RANGE</label
+      >
+      <select id="financial_year" name="financial_year" required>
+        <option value="" selected>Select</option>
+        <option value="FIS_019">2001-2002</option>
+        <option value="FIS_018">2002-2003</option>
+        <option value="FIS_017">2003-2004</option>
+        <option value="FIS_016">2004-2005</option>
+        <option value="FIS_015">2005-2006</option>
+        <option value="FIS_014">2006-2007</option>
+        <option value="FIS_013">2007-2008</option>
+        <option value="FIS_012">2008-2009</option>
+        <option value="FIS_011">2009-2010</option>
+        <option value="FIS_010">2010-2011</option>
+        <option value="FIS_009">2011-2012</option>
+        <option value="FIS_020">2012-2013</option>
+        <option value="FIS_002">2014-2015</option>
+        <option value="FIS_003">2015-2016</option>
+        <option value="FIS_004">2016-2017</option>
+        <option value="FIS_005">2017-2018</option>
+        <option value="FIS_006">2018-2019</option>
+        <option value="FIS_007">2019-2020</option>
+        <option value="FIS_008">2020-2021</option>
+        <option value="FIS_021">2021-2022</option>
+        <option value="FIS_022">2022-2023</option>
+        <option value="FIS_023">2023-2024</option>
+      </select>
+      <br />
+
+      <label for="from_date">From Date *</label>
+      <input type="date" id="from_date" name="from_date" required /><br />
+
+      <label for="to_date">To Date *</label>
+      <input type="date" id="to_date" name="to_date" required /><br />
+      <br />
+      SEARCH DOCUMENTS ON THE BASIS OF PROPERTY DETAILS(OPTIONAL):<br />
+      <label for="district">District</label>
+      <input type="text" id="district" name="district" value="INDORE" /><br />
+
+      <label for="tehsil">Tehsil</label>
+      <input type="text" id="tehsil" name="tehsil"  value="HATOD"/><br />
+
+      <label for="type_of_area">Type Of Area</label>
+      <input type="text" id="type_of_area" name="type_of_area" value="RURAL AREA" /><br />
+
+      <label for="sub_area_type">Sub Area Type</label>
+      <input type="text" id="sub_area_type" name="sub_area_type" value="PLANNING AREA" /><br />
+
+      <label for="ward_number_patwari_number">Ward Number/Patwari Number</label>
+      <input
+        type="text"
+        id="ward_number_patwari_number"
+        name="ward_number_patwari_number"
+        value="PATWARI HALKA NO. 36"
+      /><br />
+
+      <label for="mohalla_colony_name_society_road"
+        >Mohalla/Colony name/Society/Road</label
+      >
+      <input
+        type="text"
+        id="mohalla_colony_name_society_road"
+        name="mohalla_colony_name_society_road" value="PALAKHEDI (S.R. INDORE)"
+      /><br />
+
+      <label for="khasra_number">Khasra Number</label>
+      <input type="text" id="khasra_number" name="khasra_number" value="INDORE" /><br />
+      <br />
+
+      REFINE SEARCH ON THE BASIS OF TRANSACTING PARTY DETAILS (OPTIONAL):<br />
+      <label for="transacting_party_first_name"
+        >Transacting Party First Name</label
+      >
+      <input
+        type="text"
+        id="transacting_party_first_name"
+        name="transacting_party_first_name"
+      /><br />
+
+      <label for="transacting_party_middle_name"
+        >Transacting Party Middle Name</label
+      >
+      <input
+        type="text"
+        id="transacting_party_middle_name"
+        name="transacting_party_middle_name"
+      /><br />
+
+      <label for="transacting_party_last_name"
+        >Transacting Party Last Name</label
+      >
+      <input
+        type="text"
+        id="transacting_party_last_name"
+        name="transacting_party_last_name"
+      /><br />
+
+      <label for="transacting_party_mother_name"
+        >Transacting Party Mother Name</label
+      >
+      <input
+        type="text"
+        id="transacting_party_mother_name"
+        name="transacting_party_mother_name"
+      /><br />
+
+      <label for="transacting_party_father_name"
+        >Transacting Party Father Name</label
+      >
+      <input
+        type="text"
+        id="transacting_party_father_name"
+        name="transacting_party_father_name"
+      /><br />
+
+      <label for="organization_name">Organization Name</label>
+      <input
+        type="text"
+        id="organization_name"
+        name="organization_name"
+      /><br />
+
+      <input type="submit" value="Submit" />
+    </form>
+    <br />
+    Click to  proceed to Step 2: <form method="POST" action="{% url 'step2' %}" target="_blank">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Username" />
+      <input type="captcha" name="captcha" placeholder="Capthca" />
+      <input type="submit" value="Submit" />
+    </form><br />
+  </body>
+  </html>

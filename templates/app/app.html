@@ -1,0 +1,702 @@
+<!-- data_collector/templates/data_collector/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <h3>Welcome</h3>
+    Please be very precise with every data you give. Also, follow the
+    instructions.
+    <div id="step1">
+      <br />
+      <h4>Step 1:</h4>
+      <br />
+      <!-- Include the user input fields -->
+      <form method="post" action="{% url 'save_search_data' %}">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" /><br />
+
+        <label for="office_details"
+          >OFFICE DETAILS WHERE DOCUMENT WAS REGISTERED *-</label
+        ><br />
+
+        <label for="district_registered"
+          >District (where document was registered) *</label
+        >
+        <select id="district_registered" name="district_registered" required>
+          <option value="" selected>INDORE</option>
+          <option value="51~AGAR MALWA">AGAR MALWA</option>
+          <option value="49~ALIRAJPUR">ALIRAJPUR</option>
+          <option value="46~ANUPPUR">ANUPPUR</option>
+          <option value="47~ASHOK NAGAR">ASHOK NAGAR</option>
+          <option value="1~BALAGHAT">BALAGHAT</option>
+          <option value="2~BARWANI">BARWANI</option>
+          <option value="3~BETUL">BETUL</option>
+          <option value="4~BHIND">BHIND</option>
+          <option value="5~BHOPAL">BHOPAL</option>
+          <option value="48~BURHANPUR">BURHANPUR</option>
+          <option value="6~CHHATARPUR">CHHATARPUR</option>
+          <option value="7~CHHINDWARA">CHHINDWARA</option>
+          <option value="8~DAMOH">DAMOH</option>
+          <option value="9~DATIA">DATIA</option>
+          <option value="10~DEWAS">DEWAS</option>
+          <option value="11~DHAR">DHAR</option>
+          <option value="12~DINDORI">DINDORI</option>
+          <option value="13~GUNA">GUNA</option>
+          <option value="14~GWALIOR">GWALIOR</option>
+          <option value="15~HARDA">HARDA</option>
+          <option value="17~INDORE">INDORE</option>
+          <option value="18~JABALPUR">JABALPUR</option>
+          <option value="19~JHABUA">JHABUA</option>
+          <option value="20~KATNI">KATNI</option>
+          <option value="21~KHANDWA">KHANDWA</option>
+          <option value="22~KHARGONE">KHARGONE</option>
+          <option value="23~MANDLA">MANDLA</option>
+          <option value="24~MANDSAUR">MANDSAUR</option>
+          <option value="25~MORENA">MORENA</option>
+          <option value="16~NARMADAPURAM">NARMADAPURAM</option>
+          <option value="26~NARSINGHPUR">NARSINGHPUR</option>
+          <option value="27~NEEMUCH">NEEMUCH</option>
+          <option value="52~NIWARI">NIWARI</option>
+          <option value="28~PANNA">PANNA</option>
+          <option value="29~RAISEN">RAISEN</option>
+          <option value="30~RAJGARH">RAJGARH</option>
+          <option value="31~RATLAM">RATLAM</option>
+          <option value="32~REWA">REWA</option>
+          <option value="33~SAGAR">SAGAR</option>
+          <option value="34~SATNA">SATNA</option>
+          <option value="35~SEHORE">SEHORE</option>
+          <option value="36~SEONI">SEONI</option>
+          <option value="37~SHAHDOL">SHAHDOL</option>
+          <option value="38~SHAJAPUR">SHAJAPUR</option>
+          <option value="40~SHEOPUR">SHEOPUR</option>
+          <option value="39~SHIVPURI">SHIVPURI</option>
+          <option value="41~SIDHI">SIDHI</option>
+          <option value="50~SINGROLI">SINGROLI</option>
+          <option value="42~TIKAMGARH">TIKAMGARH</option>
+          <option value="43~UJJAIN">UJJAIN</option>
+          <option value="44~UMARIA">UMARIA</option>
+          <option value="45~VIDISHA">VIDISHA</option></select
+        ><br />
+
+        <label for="district_search">District BEING USED FOR SEARCH *</label>
+        <select id="district_search" name="district_search" required>
+          <option value="" selected>INDORE</option>
+          <option value="51~AGAR MALWA">AGAR MALWA</option>
+          <option value="49~ALIRAJPUR">ALIRAJPUR</option>
+          <option value="46~ANUPPUR">ANUPPUR</option>
+          <option value="47~ASHOK NAGAR">ASHOK NAGAR</option>
+          <option value="1~BALAGHAT">BALAGHAT</option>
+          <option value="2~BARWANI">BARWANI</option>
+          <option value="3~BETUL">BETUL</option>
+          <option value="4~BHIND">BHIND</option>
+          <option value="5~BHOPAL">BHOPAL</option>
+          <option value="48~BURHANPUR">BURHANPUR</option>
+          <option value="6~CHHATARPUR">CHHATARPUR</option>
+          <option value="7~CHHINDWARA">CHHINDWARA</option>
+          <option value="8~DAMOH">DAMOH</option>
+          <option value="9~DATIA">DATIA</option>
+          <option value="10~DEWAS">DEWAS</option>
+          <option value="11~DHAR">DHAR</option>
+          <option value="12~DINDORI">DINDORI</option>
+          <option value="13~GUNA">GUNA</option>
+          <option value="14~GWALIOR">GWALIOR</option>
+          <option value="15~HARDA">HARDA</option>
+          <option value="17~INDORE">INDORE</option>
+          <option value="18~JABALPUR">JABALPUR</option>
+          <option value="19~JHABUA">JHABUA</option>
+          <option value="20~KATNI">KATNI</option>
+          <option value="21~KHANDWA">KHANDWA</option>
+          <option value="22~KHARGONE">KHARGONE</option>
+          <option value="23~MANDLA">MANDLA</option>
+          <option value="24~MANDSAUR">MANDSAUR</option>
+          <option value="25~MORENA">MORENA</option>
+          <option value="16~NARMADAPURAM">NARMADAPURAM</option>
+          <option value="26~NARSINGHPUR">NARSINGHPUR</option>
+          <option value="27~NEEMUCH">NEEMUCH</option>
+          <option value="52~NIWARI">NIWARI</option>
+          <option value="28~PANNA">PANNA</option>
+          <option value="29~RAISEN">RAISEN</option>
+          <option value="30~RAJGARH">RAJGARH</option>
+          <option value="31~RATLAM">RATLAM</option>
+          <option value="32~REWA">REWA</option>
+          <option value="33~SAGAR">SAGAR</option>
+          <option value="34~SATNA">SATNA</option>
+          <option value="35~SEHORE">SEHORE</option>
+          <option value="36~SEONI">SEONI</option>
+          <option value="37~SHAHDOL">SHAHDOL</option>
+          <option value="38~SHAJAPUR">SHAJAPUR</option>
+          <option value="40~SHEOPUR">SHEOPUR</option>
+          <option value="39~SHIVPURI">SHIVPURI</option>
+          <option value="41~SIDHI">SIDHI</option>
+          <option value="50~SINGROLI">SINGROLI</option>
+          <option value="42~TIKAMGARH">TIKAMGARH</option>
+          <option value="43~UJJAIN">UJJAIN</option>
+          <option value="44~UMARIA">UMARIA</option>
+          <option value="45~VIDISHA">VIDISHA</option></select
+        ><br />
+
+        <label for="search_registered_sampada"
+          >Search Document registered after 15/12/2014 (Registered through
+          SAMPADA)</label
+        >
+        <input
+          type="checkbox"
+          id="search_registered_sampada"
+          name="search_registered_sampada"
+          checked
+        /><br />
+
+        <label for="financial_year"
+          >SEARCH DOCUMENTS REGISTERED BETWEEN THE FOLLOWING DATE RANGE</label
+        >
+        <select id="financial_year" name="financial_year" required>
+          <option value="" selected>2022-2023</option>
+          <option value="FIS_019">2001-2002</option>
+          <option value="FIS_018">2002-2003</option>
+          <option value="FIS_017">2003-2004</option>
+          <option value="FIS_016">2004-2005</option>
+          <option value="FIS_015">2005-2006</option>
+          <option value="FIS_014">2006-2007</option>
+          <option value="FIS_013">2007-2008</option>
+          <option value="FIS_012">2008-2009</option>
+          <option value="FIS_011">2009-2010</option>
+          <option value="FIS_010">2010-2011</option>
+          <option value="FIS_009">2011-2012</option>
+          <option value="FIS_020">2012-2013</option>
+          <option value="FIS_002">2014-2015</option>
+          <option value="FIS_003">2015-2016</option>
+          <option value="FIS_004">2016-2017</option>
+          <option value="FIS_005">2017-2018</option>
+          <option value="FIS_006">2018-2019</option>
+          <option value="FIS_007">2019-2020</option>
+          <option value="FIS_008">2020-2021</option>
+          <option value="FIS_021">2021-2022</option>
+          <option value="FIS_022">2022-2023</option>
+          <option value="FIS_023">2023-2024</option>
+        </select>
+        <br />
+
+        <label for="from_date">From Date *</label>
+        <input
+          type="date"
+          id="from_date"
+          name="from_date"
+          required
+          value="2023-01-10"
+        /><br />
+
+        <label for="to_date">To Date *</label>
+        <input
+          type="date"
+          id="to_date"
+          name="to_date"
+          required
+          value="2023-10-10"
+        /><br />
+        <br />
+        SEARCH DOCUMENTS ON THE BASIS OF PROPERTY DETAILS(OPTIONAL):<br />
+        <label for="district">District</label>
+        <select id="district" name="district">
+          <option value="" selected>INDORE</option>
+          <option value="51">AGAR MALWA</option>
+          <option value="49">ALIRAJPUR</option>
+          <option value="46">ANUPPUR</option>
+          <option value="47">ASHOK NAGAR</option>
+          <option value="1">BALAGHAT</option>
+          <option value="2">BARWANI</option>
+          <option value="3">BETUL</option>
+          <option value="4">BHIND</option>
+          <option value="5">BHOPAL</option>
+          <option value="48">BURHANPUR</option>
+          <option value="6">CHHATARPUR</option>
+          <option value="7">CHHINDWARA</option>
+          <option value="8">DAMOH</option>
+          <option value="9">DATIA</option>
+          <option value="10">DEWAS</option>
+          <option value="11">DHAR</option>
+          <option value="12">DINDORI</option>
+          <option value="13">GUNA</option>
+          <option value="14">GWALIOR</option>
+          <option value="15">HARDA</option>
+          <option value="17" selected="selected">INDORE</option>
+          <option value="18">JABALPUR</option>
+          <option value="19">JHABUA</option>
+          <option value="20">KATNI</option>
+          <option value="21">KHANDWA</option>
+          <option value="22">KHARGONE</option>
+          <option value="23">MANDLA</option>
+          <option value="24">MANDSAUR</option>
+          <option value="25">MORENA</option>
+          <option value="16">NARMADAPURAM</option>
+          <option value="26">NARSINGHPUR</option>
+          <option value="27">NEEMUCH</option>
+          <option value="52">NIWARI</option>
+          <option value="28">PANNA</option>
+          <option value="29">RAISEN</option>
+          <option value="30">RAJGARH</option>
+          <option value="31">RATLAM</option>
+          <option value="32">REWA</option>
+          <option value="33">SAGAR</option>
+          <option value="34">SATNA</option>
+          <option value="35">SEHORE</option>
+          <option value="36">SEONI</option>
+          <option value="37">SHAHDOL</option>
+          <option value="38">SHAJAPUR</option>
+          <option value="40">SHEOPUR</option>
+          <option value="39">SHIVPURI</option>
+          <option value="41">SIDHI</option>
+          <option value="50">SINGROLI</option>
+          <option value="42">TIKAMGARH</option>
+          <option value="43">UJJAIN</option>
+          <option value="44">UMARIA</option>
+          <option value="45">VIDISHA</option></select
+        ><br />
+
+        <label for="tehsil">Tehsil</label>
+        <select id="tehsilDropdown">
+          <option value="">Select Tehsil</option>
+          <!-- Tehsil options will be dynamically populated using JavaScript --></select
+        ><br />
+
+        <label for="type_of_area">Type Of Area</label>
+        <select id="type_of_area" name="type_of_area">
+          <option value="" selected>RURAL AREA</option>
+          <option value="96">RURAL AREA</option>
+          <option value="316">URBAN AREA</option></select
+        ><br />
+
+        <label for="sub_area_type">Sub Area Type</label>
+        <select id="sub_area_type" name="sub_area_type">
+          <option value="" selected>PLANNING AREA</option>
+          <option value="6">NON-PLANNING AREA</option>
+          <option value="5">PLANNING AREA</option></select
+        ><br />
+
+        <label for="ward_number_patwari_number"
+          >Ward Number/Patwari Number</label
+        >
+        <input
+          type="text"
+          id="ward_number_patwari_number"
+          name="ward_number_patwari_number"
+          value="PATWARI HALKA NO. 36"
+        /><br />
+
+        <label for="mohalla_colony_name_society_road"
+          >Mohalla/Colony name/Society/Road</label
+        >
+        <input
+          type="text"
+          id="mohalla_colony_name_society_road"
+          name="mohalla_colony_name_society_road"
+          value="PALAKHEDI (S.R. INDORE)"
+        /><br />
+
+        <label for="khasra_number">Khasra Number</label>
+        <input type="text" id="khasra_number" name="khasra_number" /><br />
+        <br />
+
+        REFINE SEARCH ON THE BASIS OF TRANSACTING PARTY DETAILS (OPTIONAL):<br />
+        <label for="transacting_party_first_name"
+          >Transacting Party First Name</label
+        >
+        <input
+          type="text"
+          id="transacting_party_first_name"
+          name="transacting_party_first_name"
+        /><br />
+
+        <label for="transacting_party_middle_name"
+          >Transacting Party Middle Name</label
+        >
+        <input
+          type="text"
+          id="transacting_party_middle_name"
+          name="transacting_party_middle_name"
+        /><br />
+
+        <label for="transacting_party_last_name"
+          >Transacting Party Last Name</label
+        >
+        <input
+          type="text"
+          id="transacting_party_last_name"
+          name="transacting_party_last_name"
+        /><br />
+
+        <label for="transacting_party_mother_name"
+          >Transacting Party Mother Name</label
+        >
+        <input
+          type="text"
+          id="transacting_party_mother_name"
+          name="transacting_party_mother_name"
+        /><br />
+
+        <label for="transacting_party_father_name"
+          >Transacting Party Father Name</label
+        >
+        <input
+          type="text"
+          id="transacting_party_father_name"
+          name="transacting_party_father_name"
+        /><br />
+
+        <label for="organization_name">Organization Name</label>
+        <input
+          type="text"
+          id="organization_name"
+          name="organization_name"
+        /><br />
+
+        <input type="submit" value="Submit" />
+      </form>
+      <br />
+
+      <button onclick="showStep('step2')">Go to Step 2</button>
+    </div>
+
+    <div id="step2" style="display: none">
+      <br />
+      <h4>Step 2:</h4>
+      <br />
+      <label>Login:</label>
+      <form method="POST" action="{% url 'login_view_open' %}" target="_blank">
+        {% csrf_token %}
+        <input
+          type="text"
+          name="username"
+          id="username_input"
+          placeholder="Username"
+        />
+        <input type="password" name="password" placeholder="Password" />
+        <button type="submit" id="loginButton">Login</button>
+      </form>
+      <br />
+
+      <label for="office_details"
+        >Please wait for a while before clicking on Show Captcha-</label
+      ><br />
+      <form id="usernameForm">
+        <label for="usernameInput" style="display: none">Enter Username:</label>
+        <input
+          type="text"
+          id="usernameInput"
+          name="username"
+          placeholder="Username"
+          style="display: none"
+        />
+        <button type="button" id="showCaptchaButton">Show Captcha</button>
+      </form>
+      <br />
+      <label for="office_details"
+        >Note- If Show Captcha button clicked early or captcha not displaying
+        refresh the page and try again.</label
+      ><br />
+
+      <img id="captchaImage" src="" alt="Captcha" style="display: none" />
+      <br />
+      <form method="POST" action="{% url 'save_captcha' %}" target="_blank">
+        {% csrf_token %}
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          id="usernameInputb"
+          style="display: none"
+        />
+        <input type="captcha" name="captcha" placeholder="Capthca" />
+        <input type="submit" value="Submit" id="submitStep2" />
+      </form>
+      <br />
+
+      Please wait at least a minute for details to get filled after it proceed
+      with Step 3.
+      <br /><br />
+      <button onclick="showStep('step1')">Go to Step 1</button>
+      <button id="buttonStep3" onclick="showStep('step3')">Go to Step 3</button>
+    </div>
+    <div id="step3" style="display: none">
+      <br />
+      <h4>Step 3:</h4>
+      <br />
+
+      <select id="districtDrop">
+        <option value="default">Select Tehsil</option>
+        <!-- Tehsil options will be dynamically populated using JavaScript --></select
+      ><br />
+      <button type="submit">Submit</button>
+
+      <select id="tehsilDrop">
+        <option value="default">Select Tehsil</option>
+        <!-- Tehsil options will be dynamically populated using JavaScript --></select
+      ><br />
+      <button type="submit">Submit</button>
+
+      <form id="usernameForm2">
+        <label for="usernameInput2" style="display: none"
+          >Enter Username for inner form:</label
+        >
+        <input
+          type="text"
+          id="usernameInput2"
+          name="username2"
+          placeholder="Username"
+          style="display: none"
+        />
+        <button type="button" id="showCaptchaButton2">Show Captcha</button>
+      </form>
+      <br />
+      <img id="captchaImage2" src="" alt="Captcha2" style="display: none" />
+
+      <form
+        method="POST"
+        action="{% url 'save_captcha2' %}"
+        onsubmit="return onSubmitHandler();"
+        target="_blank"
+      >
+        <input
+          type="hidden"
+          name="csrfmiddlewaretoken"
+          value="7hEqzRMI6G8pUWXPzgCuFqcHHOYpVEnSqjY4uTsqFLWi0xixsrMJMk4h3dCdlXz8"
+        />
+        {% csrf_token %}
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          id="usernameInput2b"
+          style="display: none"
+        />
+        <input type="captcha" name="captcha" placeholder="Capthca" />
+        <input type="submit" value="Submit" />
+      </form>
+      <label for="office_details"
+        >Note- <br />
+        *If Show Captcha button clicked early or captcha not displaying refresh
+        the page and try again.<br />
+        *After submitting captcha, click on show captcha again, if captcha was
+        wrong then, new captcha will be needed to submit. Else, same captcha
+        will show again and no action needed. The excel file will be saved
+        within a while. </label
+      ><br />
+      <button onclick="showStep('step2')">Go to Step 2</button>
+    </div>
+    {% csrf_token %}
+    <script>
+      function showStep(stepId) {
+        // Hide all steps
+        document.getElementById("step1").style.display = "none";
+        document.getElementById("step2").style.display = "none";
+        document.getElementById("step3").style.display = "none";
+
+        // Show the selected step
+        document.getElementById(stepId).style.display = "block";
+        localStorage.setItem("currentStep", stepId);
+      }
+      const csrfToken = document.cookie.match(/csrftoken=([^;]+)/)[1];
+      function addDelay() {
+        const showCaptchaButton = document.getElementById("showCaptchaButton");
+
+        // Disable the "Show Captcha" button initially
+        showCaptchaButton.disabled = true;
+
+        // After a delay of 6 seconds (6000 milliseconds), enable the button
+        setTimeout(function () {
+          showCaptchaButton.disabled = false;
+          showCaptchaButton.click();
+        }, 10000);
+      }
+      document
+        .getElementById("loginButton")
+        .addEventListener("click", addDelay);
+      function addDelay2() {
+        const buttonStep3 = document.getElementById("buttonStep3");
+
+        // Disable the "Show Captcha" button initially
+        buttonStep3.disabled = true;
+
+        // After a delay of 6 seconds (6000 milliseconds), enable the button
+        setTimeout(function () {
+          buttonStep3.disabled = false;
+          buttonStep3.click();
+        }, 60000);
+      }
+
+      // Add an event listener to the "Login" button to call the addDelay function
+      document
+        .getElementById("submitStep2")
+        .addEventListener("click", addDelay2);
+
+      document
+        .getElementById("showCaptchaButton")
+        .addEventListener("click", function () {
+          // Get the username entered by the user
+          var username = document.getElementById("usernameInput").value;
+
+          // Check if a username is entered
+          if (username.trim() === "") {
+            alert("Please enter a username.");
+            return;
+          }
+
+          // Construct the URL for the captcha image based on the entered username
+          var captchaImage = document.getElementById("captchaImage");
+          captchaImage.src = `/media/captcha_${username}.png`;
+          captchaImage.style.display = "block";
+        });
+
+      document
+        .getElementById("showCaptchaButton2")
+        .addEventListener("click", function () {
+          // Get the username entered by the user
+          var username2 = document.getElementById("usernameInput2").value;
+
+          // Check if a username is entered
+          if (username2.trim() === "") {
+            alert("Please enter a username.");
+            return;
+          }
+
+          // Construct the URL for the captcha image based on the entered username
+          var captchaImage2 = document.getElementById("captchaImage2");
+          captchaImage2.src = `/media/captcha_${username2}_form.png`;
+          captchaImage2.style.display = "block";
+        });
+
+      // Get the input element for the username in Step 1
+      const usernameStep2 = document.getElementById("username_input");
+
+      // Get the input element for the username in Step 2
+      const usernameStep2a = document.getElementById("usernameInput");
+      const usernameStep2b = document.getElementById("usernameInputb");
+      const usernameStep2c = document.getElementById("usernameInput2");
+      const usernameStep2d = document.getElementById("usernameInput2b");
+
+      // Listen for input changes in the username field in Step 2
+      usernameStep2.addEventListener("input", function () {
+        usernameStep2a.value = username_input.value;
+        usernameStep2b.value = username_input.value;
+        usernameStep2c.value = username_input.value;
+        usernameStep2d.value = username_input.value;
+      });
+      usernameStep2a.addEventListener("input", function () {
+        usernameStep2b.value = usernameInput.value;
+        usernameStep2c.value = usernameInput.value;
+        usernameStep2d.value = usernameInput.value;
+      });
+      usernameStep2b.addEventListener("input", function () {
+        usernameStep2c.value = usernameInput2.value;
+        usernameStep2d.value = usernameInput2.value;
+      });
+      const storedStep = localStorage.getItem("currentStep");
+      if (storedStep) {
+        showStep(storedStep);
+      }
+      function onSubmitHandler() {
+        // Get the username entered by the user
+        const username2b = document.getElementById("usernameInput2b").value;
+
+        // Store the username value in localStorage to retain it after page reload
+        localStorage.setItem("usernameValue", username2b);
+        setTimeout(function () {
+          window.location.reload();
+        }, 10000);
+        // Return true to allow form submission
+        return true;
+      }
+
+      // Check if there's a stored username value in localStorage
+      const storedUsername = localStorage.getItem("usernameValue");
+
+      // If a stored username exists, set it in the username input field
+      if (storedUsername) {
+        document.getElementById("usernameInput2").value = storedUsername;
+        document.getElementById("usernameInput2b").value = storedUsername;
+      }
+      document
+        .getElementById("buttonStep3")
+        .addEventListener("click", function () {
+          // Trigger a click event on the "Show Captcha" button
+          document.getElementById("showCaptchaButton2").click();
+        });
+
+      const tehsilDropdown = document.getElementById("tehsilDrop");
+      const districtDropdown = document.getElementById("district_Drop");
+      const login_button = document.getElementById("buttonStep3");
+
+      login_button.addEventListener("onclick", function () {
+        const url = `/get_districts/`;
+
+        // Clear existing tehsil options
+        login_button.innerHTML =
+          '<option value="default">Select District</option>';
+
+        // Fetch tehsils using Ajax
+        fetch(url)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+
+            if (!data || data.length === 0) {
+              console.error("No tehsils found.");
+              return;
+            }
+
+            // Populate tehsil dropdown with fetched tehsils
+            data.forEach((district) => {
+              const option = document.createElement("option");
+              option.value = district.pk;
+              option.text = district.fields.name;
+              districtDropdown.appendChild(option);
+            });
+          })
+          .catch((error) => console.error("Error:", error));
+      });
+      districtDropdown.addEventListener("change", function () {
+        var username = document.getElementById("usernameInput").value;
+        const selectedDistrictId = this.value;
+        const url = `/save_district/${username}/${selectedDistrictId}/`;
+        fetch(url)
+        setTimeout(function () {
+          const url2 = `/get_tehsils/${selectedDistrictId}/`;
+          tehsilDropdown.innerHTML =
+            '<option value="default">Select Tehsil</option>';
+          fetch(url2)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then((data) => {
+              console.log(data);
+
+              if (!data || data.length === 0) {
+                console.error("No tehsils found.");
+                return;
+              }
+
+              // Populate tehsil dropdown with fetched tehsils
+              data.forEach((tehsil) => {
+                const option = document.createElement("option");
+                option.value = tehsil.pk;
+                option.text = tehsil.fields.name;
+                tehsilDropdown.appendChild(option);
+              });
+            })
+            .catch((error) => console.error("Error:", error));
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
