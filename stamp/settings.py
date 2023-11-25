@@ -28,12 +28,12 @@ DEBUG = True
 ALLOWED_HOSTS = ['*',
                  '127.0.0.1',
                  'localhost',
-                 '164e-2409-40d2-5-1d6c-7da9-2720-76c4-78eb.ngrok-free.app']
+                 'e4e9-49-36-183-88.ngrok-free.app']
 
 
 # Application definition
 CORS_ALLOW_ALL_ORIGINS= True
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000/', 'https://164e-2409-40d2-5-1d6c-7da9-2720-76c4-78eb.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000/', 'https://e4e9-49-36-183-88.ngrok-free.app']
 
 
 
@@ -113,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 

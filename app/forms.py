@@ -32,22 +32,3 @@ class CaptchaForm(forms.Form):
     username = forms.CharField(max_length=100)
     captcha = forms.CharField()
 
-
-# from .forms import SearchForm
-
-# def collect_and_save_data(request):
-#     if request.method == 'POST':
-#         form = SearchForm(request.POST)
-#         if form.is_valid():
-#             # Process the form data and save it to the database
-#             registration = Registration(
-#                 registration_no=form.cleaned_data['registration_no'],
-#                 date_of_registration=form.cleaned_data['date_of_registration'],
-#                 buyer_name=form.cleaned_data['buyer_name'],
-#                 # Add other fields as needed
-#             )
-#             registration.save()
-#             return HttpResponse("Data has been collected and saved to the database.")
-#     else:
-#         form = SearchForm()
-#     return render(request, 'data_collection_form.html', {'form': form})

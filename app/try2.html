@@ -2,72 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
     <title>Home Page</title>
-    <style>
-      /* CSS code for improving visibility on mobile devices */
-      @media (max-width: 480px) {
-        /* Increase size and font for better visibility */
-        #popupContainer {
-          display: block;
-          position: fixed;
-          bottom: 5%; /* Adjust the bottom position */
-          right: 3%; /* Adjust the right position */
-          background-color: #fff; /* Change background color */
-          padding: 15px; /* Increase padding */
-          border-radius: 8px; /* Add rounded corners */
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-          z-index: 9999; /* Ensure it's above other elements */
-          max-width: 80%; /* Set maximum width */
-        }
-      
-        /* Increase text size for better readability */
-        #popupContent {
-          font-size: 16px;
-        }
-        h3 {
-          font-size: 1.5em; /* Increase font size for headings */
-        }
-        p {
-          font-size: 0.9em; /* Decrease font size for paragraphs */
-          margin-bottom: 10px; /* Adjust spacing between paragraphs */
-        }
-      }
-      body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        padding: 10px;
-        margin: 0; /* Reset default margin */
-        display: flex;
-        justify-content: left; /* Center content horizontally */
-        align-items: flex-start; /* Center content vertically */
-        height: 100vh; /* Make the body take up the full viewport height */
-        background-color: #f2f2f2; /* Optional: Set a background color */
-      }
-      .content {
-      max-width: 80%; /* Adjust the width of the content */
-      text-align: center; /* Center text */
-    }
-      #step1 {
-        font-size: 0.9em; /* Decrease font size for step content */
-      }
-      #step2 {
-        font-size: 0.9em; /* Decrease font size for step content */
-      }
-      #step3 {
-        font-size: 0.9em; /* Decrease font size for step content */
-      }
-      label[for="office_details"] {
-        font-size: 0.9em; /* Decrease font size for the label */
-        color: #333; /* Change label color if needed */
-        /* Add any other styling properties as necessary */
-      }
-    </style>
   </head>
   <body>
-    <div id="popupContainer" style="display: none; position: fixed; bottom: 20px; right: 20px;">
-      <div id="popupContent"></div>
-    </div>
+    <h3>Welcome</h3>
+    Please be very precise with every data you give. Also, follow the
+    instructions.
     <div id="step1">
       <br />
       <h4>Step 1:</h4>
@@ -86,7 +27,7 @@
           >District (where document was registered) *</label
         >
         <select id="district_registered" name="district_registered" required>
-          <option value="" selected>Select District</option>
+          <option value="" selected>INDORE</option>
           <option value="51~AGAR MALWA">AGAR MALWA</option>
           <option value="49~ALIRAJPUR">ALIRAJPUR</option>
           <option value="46~ANUPPUR">ANUPPUR</option>
@@ -143,7 +84,7 @@
 
         <label for="district_search">District BEING USED FOR SEARCH *</label>
         <select id="district_search" name="district_search" required>
-          <option value="" selected>Select District</option>
+          <option value="" selected>INDORE</option>
           <option value="51~AGAR MALWA">AGAR MALWA</option>
           <option value="49~ALIRAJPUR">ALIRAJPUR</option>
           <option value="46~ANUPPUR">ANUPPUR</option>
@@ -213,7 +154,7 @@
           >SEARCH DOCUMENTS REGISTERED BETWEEN THE FOLLOWING DATE RANGE</label
         >
         <select id="financial_year" name="financial_year" required>
-          <option value="" selected>Select Date</option>
+          <option value="" selected>2022-2023</option>
           <option value="FIS_019">2001-2002</option>
           <option value="FIS_018">2002-2003</option>
           <option value="FIS_017">2003-2004</option>
@@ -356,22 +297,14 @@
         <button type="button" id="showCaptchaButton">Show Captcha</button>
       </form>
       <br />
+      <label for="office_details"
+        >Note- If Show Captcha button clicked early or captcha not displaying
+        refresh the page and try again.</label
+      ><br />
 
       <img id="captchaImage" src="" alt="Captcha" style="display: none" />
       <br />
-      <form method="POST" action="{% url 'save_captcha' %}" target="_blank">
-        {% csrf_token %}
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          id="usernameInputb"
-          style="display: none"
-        />
-        <input id='firstCaptcha' type="captcha" name="captcha" placeholder="Capthca" />
-        <input type="submit" value="Submit" id="submitStep2" />
-      </form>
-      {% comment %} <input
+      <input
             type="text"
             name="username"
             placeholder="Username"
@@ -380,7 +313,7 @@
           />
           <input id='firstCaptcha' type="captcha" name="captcha" placeholder="Captcha" />
           <button id="submitStep2">Submit</button>
-      <br /> {% endcomment %}
+      <br />
 
       Please wait at least a minute for details to get filled after it proceed
       with Step 3.
@@ -401,31 +334,30 @@
       <select id="tehsilDrop" style="display: none;">
         <option value="default">Select Tehsil</option>
         <!-- Tehsil options will be dynamically populated using JavaScript --></select
-      ><br />
+      ><br /><br />
 
       <select id="type_of_areaDrop" style="display: none;">
         <option value="default">Select Type_of_area</option>
         <!-- Type_of_area options will be dynamically populated using JavaScript --></select
-      ><br />
+      ><br /><br />
 
       <select id="sub_area_typeDrop" style="display: none;">
         <option value="default">Select Sub_area_type</option>
         <!-- sub_area_type options will be dynamically populated using JavaScript --></select
-      ><br />
+      ><br /><br />
 
       <select id="ward_number_patwari_numberDrop" style="display: none;">
         <option value="default">Select Ward_number_patwari_number</option>
         <!-- ward_number_patwari_number options will be dynamically populated using JavaScript --></select
-        ><br />
+        ><br /><br />
 
       <select id="mohalla_colony_name_society_roadDrop" style="display: none;">
         <option value="default">Select Mohalla_colony_name_society_road</option>
         <!-- mohalla_colony_name_society_road options will be dynamically populated using JavaScript --></select
         ><br /><br />
-      
-      If details are filled click on Submit.
+
       <button id="done">Submit</button>
-      <br/><br/>
+      <br /><br />
 
       <form id="usernameForm2">
         <label for="usernameInput2" style="display: none"
@@ -443,7 +375,18 @@
       <br />
       <img id="captchaImage2" src="" alt="Captcha2" style="display: none" />
       
-      <form
+      <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          id="usernameInput2b"
+          style="display: none"
+        />
+        <input id= 'secCaptcha' type="captcha" name="captcha" placeholder="Captcha" />
+        <button id="submitStep">Submit</button>
+      <br />
+
+      {% comment %} <form
         method="POST"
         action="{% url 'save_captcha2' %}"
         onsubmit="return onSubmitHandler();"
@@ -462,17 +405,19 @@
           id="usernameInput2b"
           style="display: none"
         />
-        <input id= 'secCaptcha' type="captcha" name="captcha" placeholder="Capthca" />
-        <input id="submitStep" type="submit" value="Submit" />
-      </form>
-      <br />
-      Just an extra mile-
-      The page will refresh now. After the page refresh,<br />
-      Please check if the same captcha is showing then forms are scraping, Else submit the captcha again.<br />
-      <mark>Click on Show Live Progress, if anytime updates stops. </mark><br />
-
-      <button id="restart">Show Live Progress.</button><br /><br />
-      <button onclick="showStep('step2')">Go to Step 2</button><br />
+        <input type="captcha" name="captcha" placeholder="Capthca" />
+        <input type="submit" value="Submit" />
+      </form> {% endcomment %}
+      <label for="office_details"
+        >Note- <br />
+        *If Show Captcha button clicked early or captcha not displaying refresh
+        the page and try again.<br />
+        *After submitting captcha, click on show captcha again, if captcha was
+        wrong then, new captcha will be needed to submit. Else, same captcha
+        will show again and no action needed. The excel file will be saved
+        within a while. </label
+      ><br />
+      <button onclick="showStep('step2')">Go to Step 2</button>
     </div>
     {% csrf_token %}
     <script>
@@ -493,7 +438,7 @@
         // Disable the "Show Captcha" button initially
         showCaptchaButton.disabled = true;
 
-        // After a delay of 6 seconds (4000 milliseconds), enable the button
+        // After a delay of 6 seconds (6000 milliseconds), enable the button
         setTimeout(function () {
           showCaptchaButton.disabled = false;
           showCaptchaButton.click();
@@ -508,12 +453,26 @@
         // Disable the "Show Captcha" button initially
         buttonStep3.disabled = true;
 
-        // After a delay of 6 seconds (4000 milliseconds), enable the button
+        // After a delay of 6 seconds (6000 milliseconds), enable the button
         setTimeout(function () {
           buttonStep3.disabled = false;
           buttonStep3.click();
         }, 40000);
       }
+      const capthcaSubmit2 = document.getElementById("submitStep2");
+      capthcaSubmit2.addEventListener("click", function () {
+        const username = document.getElementById("usernameInputb").value;
+        const captcha = document.getElementById("firstCaptcha").value;
+        const url = `/save_captcha/${username}/${captcha}/`;
+        fetch(url);
+      });
+      const capthcaSubmit = document.getElementById("submitStep");
+      capthcaSubmit.addEventListener("click", function () {
+        const username = document.getElementById("usernameInputb").value;
+        const captcha = document.getElementById("secCaptcha").value;
+        const url = `/save_captcha/${username}/${captcha}/`;
+        fetch(url);
+      });
 
       // Add an event listener to the "Login" button to call the addDelay function
       document
@@ -585,42 +544,35 @@
       if (storedStep) {
         showStep(storedStep);
       }
-      
       function onSubmitHandler() {
+        // Get the username entered by the user
         const username2b = document.getElementById("usernameInput2b").value;
+
+        // Store the username value in localStorage to retain it after page reload
         localStorage.setItem("usernameValue", username2b);
-      
-        // Reload the page after 10 seconds
         setTimeout(function () {
           window.location.reload();
-      
-          // Call fetchAndNotify after the reload
-          setTimeout(function () {
-            // Click on the "Show Captcha" button after the page reloads
-            const showCaptchaButton2 = document.getElementById("showCaptchaButtonId"); // Replace with the actual ID of the button
-            if (showCaptchaButton2) {
-              showCaptchaButton2.click(); // Simulate a click on the button
-            }
-          }, 2000);
         }, 10000);
-      
         // Return true to allow form submission
         return true;
       }
-      
 
       // Check if there's a stored username value in localStorage
       const storedUsername = localStorage.getItem("usernameValue");
 
       // If a stored username exists, set it in the username input field
       if (storedUsername) {
-        document.getElementById("usernameInput").value = storedUsername;
         document.getElementById("usernameInput2").value = storedUsername;
         document.getElementById("usernameInput2b").value = storedUsername;
       }
+      document
+        .getElementById("mohalla_colony_name_society_roadDrop")
+        .addEventListener("change", function () {
+          // Trigger a click event on the "Show Captcha" button
+          document.getElementById("showCaptchaButton2").click();
+        });
 
       const login_button = document.getElementById("submitStep2");
-
       login_button.addEventListener("click", function () {
         const url = `/get_districts/`;
 
@@ -657,14 +609,6 @@
 
       const districtDropdown = document.getElementById("districtDrop");
       districtDropdown.addEventListener("change", function () {
-
-        tehsilDropdown.innerHTML = '<option value="default">Select tehsil</option>';
-        tehsilDropdown.disabled = false;
-        type_of_areaDropdown.innerHTML = '<option value="default">Select type_of_area</option>';
-        sub_area_typeDropdown.innerHTML = '<option value="default">Select Sub_area_type</option>';
-        ward_number_patwari_numberDropdown.innerHTML = '<option value="default">Select Ward_number_patwari_number</option>';
-        mohalla_colony_name_society_roadDropdown.innerHTML = '<option value="default">Select Mohalla_colony_name_society_road</option>';
-
         var username = document.getElementById("usernameInput").value;
         const selectedDistrictId = this.value;
         const district = 'district'
@@ -672,7 +616,6 @@
         fetch(changed);
         const url = `/save_district/${username}/${selectedDistrictId}/`;
         fetch(url);
-        districtDropdown.disabled = true;
         setTimeout(function () {
           const url2 = `/get_tehsils/${selectedDistrictId}/`;
           tehsilDropdown.innerHTML =
@@ -702,7 +645,6 @@
                 option.text = tehsil.fields.name;
                 tehsilDropdown.appendChild(option);
                 tehsilDropdown.style.display = 'block';
-                districtDropdown.disabled = false;
               });
             }
             })
@@ -712,11 +654,6 @@
 
       const tehsilDropdown = document.getElementById("tehsilDrop");
       tehsilDropdown.addEventListener("change", function () {
-        type_of_areaDropdown.innerHTML = '<option value="default">Select type_of_area</option>';
-        type_of_areaDropdown.disabled = false;
-        sub_area_typeDropdown.innerHTML = '<option value="default">Select Sub_area_type</option>';
-        ward_number_patwari_numberDropdown.innerHTML = '<option value="default">Select Ward_number_patwari_number</option>';
-        mohalla_colony_name_society_roadDropdown.innerHTML = '<option value="default">Select Mohalla_colony_name_society_road</option>';
         var username = document.getElementById("usernameInput").value;
         const selectedTehsilId = this.value;
         const tehsil = 'tehsil'
@@ -724,7 +661,6 @@
         fetch(changed);
         const url = `/save_tehsil/${username}/${selectedTehsilId}/`;
         fetch(url);
-        tehsilDropdown.disabled = true;
         setTimeout(function () {
           const url2 = `/get_type_of_areas/${selectedTehsilId}/`;
           type_of_areaDropdown.innerHTML =
@@ -754,7 +690,6 @@
                 option.text = type_of_area.fields.name;
                 type_of_areaDropdown.appendChild(option);
                 type_of_areaDropdown.style.display = 'block';
-                tehsilDropdown.disabled = false;
               });
             }
             })
@@ -765,9 +700,6 @@
       const type_of_areaDropdown = document.getElementById("type_of_areaDrop");
       type_of_areaDropdown.addEventListener("change", function () {
         sub_area_typeDropdown.innerHTML = '<option value="default">Select Sub_area_type</option>';
-        sub_area_typeDropdown.disabled = false;
-        ward_number_patwari_numberDropdown.innerHTML = '<option value="default">Select Ward_number_patwari_number</option>';
-        mohalla_colony_name_society_roadDropdown.innerHTML = '<option value="default">Select Mohalla_colony_name_society_road</option>';
         var username = document.getElementById("usernameInput").value;
         const selectedType_of_areaName =
           type_of_areaDropdown.options[type_of_areaDropdown.selectedIndex].text;
@@ -777,10 +709,11 @@
         fetch(changed);
         const url = `/save_type_of_area/${username}/${selectedType_of_areaName}/`;
         fetch(url);
-        type_of_areaDropdown.disabled = true;
         setTimeout(function () {
           const url2 = `/get_sub_area_types/${selectedType_of_areaId}/${selectedType_of_areaName}/`;
           sub_area_typeDropdown.innerHTML ='<option value="default">Select Sub_area_type</option>';
+          ward_number_patwari_numberDropdown.innerHTML = '<option value="default">Select Ward_number_patwari_number</option>';
+          mohalla_colony_name_society_roadDropdown.innerHTML = '<option value="default">Select Mohalla_colony_name_society_road</option>';
           fetch(url2)
             .then((response) => {
               if (!response.ok) {
@@ -807,7 +740,6 @@
                 option.text = sub_area_type.fields.name;
                 sub_area_typeDropdown.appendChild(option);
                 sub_area_typeDropdown.style.display = 'block';
-                type_of_areaDropdown.disabled = false;
               });
             }
             })
@@ -818,7 +750,6 @@
       const sub_area_typeDropdown = document.getElementById("sub_area_typeDrop");
       sub_area_typeDropdown.addEventListener("change", function () {
         ward_number_patwari_numberDropdown.innerHTML = '<option value="default">Select Ward_number_patwari_number</option>';
-        ward_number_patwari_numberDropdown.disabled = false;
         mohalla_colony_name_society_roadDropdown.innerHTML = '<option value="default">Select Mohalla_colony_name_society_road</option>';
         var username = document.getElementById("usernameInput").value;
         const selectedSub_area_typeId = this.value;
@@ -827,8 +758,6 @@
         fetch(changed);
         const url = `/save_sub_area_type/${username}/${selectedSub_area_typeId}/`;
         fetch(url);
-        sub_area_typeDropdown.disabled = true;
-
         setTimeout(function () {
           const url2 = `/get_ward_number_patwari_numbers/${selectedSub_area_typeId}/`;
           ward_number_patwari_numberDropdown.innerHTML = '<option value="default">Select Ward_number_patwari_number</option>';
@@ -856,8 +785,6 @@
                 option.text = ward_number_patwari_number.fields.name;
                 ward_number_patwari_numberDropdown.appendChild(option);
                 ward_number_patwari_numberDropdown.style.display = 'block';
-                sub_area_typeDropdown.disabled = false;
-                
               });
             }
             })
@@ -868,7 +795,6 @@
       const ward_number_patwari_numberDropdown = document.getElementById("ward_number_patwari_numberDrop");
       ward_number_patwari_numberDropdown.addEventListener("change", function () {
         mohalla_colony_name_society_roadDropdown.innerHTML = '<option value="default">Select Mohalla_colony_name_society_road</option>';
-        mohalla_colony_name_society_roadDropdown.disabled = false;
         var username = document.getElementById("usernameInput").value;
         const selectedWard_number_patwari_numberId = this.value;
         const ward = 'ward'
@@ -876,8 +802,6 @@
         fetch(changed);
         const url = `/save_ward_number_patwari_number/${username}/${selectedWard_number_patwari_numberId}/`;
         fetch(url)
-        ward_number_patwari_numberDropdown.disabled = true;
-
         setTimeout(function () {
           const url2 = `/get_mohalla_colony_name_society_roads/${selectedWard_number_patwari_numberId}/`;
           mohalla_colony_name_society_roadDropdown.innerHTML = '<option value="default">Select Mohalla_colony_name_society_road</option>';
@@ -906,8 +830,6 @@
                     option.text = mohalla_colony_name_society_road.fields.name;
                     mohalla_colony_name_society_roadDropdown.appendChild(option);
                     mohalla_colony_name_society_roadDropdown.style.display = 'block';
-                    ward_number_patwari_numberDropdown.disabled = false;
-
                 });
             }
             })
@@ -923,10 +845,6 @@
         fetch(changed);
         const url = `/save_mohalla_colony_name_society_road/${username}/${selectedMohalla_colony_name_society_roadId}/`;
         fetch(url)
-        mohalla_colony_name_society_roadDropdown.disabled = true;
-        setTimeout(function () {
-          mohalla_colony_name_society_roadDropdown.disabled = false;
-        }, 5000); // Set the timeout for 5 seconds (adjust the time as needed)
       });
       const done = document.getElementById("done");
       done1 = 'done'
@@ -934,85 +852,224 @@
         var username = document.getElementById("usernameInput").value;
         const changed = `/changedDropdown/${username}/${done1}/`;
         fetch(changed);
-        setTimeout(function () {
-          document.getElementById("showCaptchaButton2").click();
-        }, 1000);
       });
-
-      // Function to fetch the link and show notifications
-      function fetchAndNotify() {
-        var username = document.getElementById("usernameInput").value;
-        const notifi = `/notification/${username}/`;
-        fetch(notifi)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok.');
-                }
-                return response.json(); // Parse the JSON response
-            })
-            .then(data => {
-                // Display notifications as popups
-                const popupContainer = document.getElementById('popupContainer');
-                const popupContent = document.getElementById('popupContent');
-                const message = data.message; // Assuming 'message' is a key in the fetched data
-                
-                // Store the initial message content
-                const initialMessage = `<div>${message}</div>`;
-    
-                const matches = message.match(/(\d+) items found, displaying (\d+) to (\d+)/);
-    
-                if (matches && matches.length === 4) {
-                    const totalCount = parseInt(matches[1]);
-                    const displayingCountStart = parseInt(matches[2]);
-                    const displayingCountEnd = parseInt(matches[3]);
-                    const displayingCount = displayingCountStart + 1;
-    
-                    // Calculate progress percentage
-                    const progressPercentage = (displayingCount / totalCount) * 100;
-                const percentageText = `${progressPercentage.toFixed(2)}%`; // Round to two decimal places
-
-                // Construct the progress bar with percentage
-                const progressBar = `
-                    <div class="progress" style="width: 100px; border: 1px solid #ccc;">
-                        <div class="progress-bar" role="progressbar" style="width: ${progressPercentage}%; background-color: green; height: 20px;" aria-valuenow="${progressPercentage}" aria-valuemin="0" aria-valuemax="100">
-                            ${percentageText}
-                        </div>
-                    </div>
-                `;
-
-                // Combine the initial message with the progress bar
-                const contentWithProgressBar = initialMessage + progressBar;
-                popupContent.innerHTML = contentWithProgressBar;
-            } else {
-                popupContent.innerHTML = initialMessage; // Show the message without the progress bar
-            }
-
-            popupContainer.style.display = 'block'; // Show the popup container
-
-            // Automatically hide the popup after 5 seconds (adjust as needed)
-            setTimeout(function () {
-                popupContainer.style.display = 'none';
-            }, 5000);
-        })
-        .catch(error => {
-            console.error('There was a problem fetching the notification:', error);
-        });
-}
-    
-    
-    const notificationInit = document.getElementById("loginButton");
-    notificationInit.addEventListener("click", function () {
-      fetchAndNotify(); 
-      setInterval(fetchAndNotify, 8000);
-    });
-    const restartButton = document.getElementById("restart");
-
-restartButton.addEventListener("click", function() {
-  fetchAndNotify();
-  setInterval(fetchAndNotify, 8000); 
-});
-
-    
     </script>
   </body>
 </html>
+
+
+
+
+<tbody><tr>
+  <td class="pageHeader" colspan="4">
+  <table width="100%">
+    <tbody><tr>
+      <td width="82%" class="pageHeaderText">Document Search/Certified Copy</td>
+      <td width="18%" valign="bottom" class="mandatoryField">*
+      *</td>
+    </tr>
+  </tbody></table>
+  </td>
+</tr>
+
+
+
+
+  
+            <tr>
+      <td height="50" colspan="4" bgcolor="red" class="lastFormValue">Data Not Available for Given Search Criteria<span class="mandatoryField"></span></td>
+     
+  </tr>
+  <tr>
+     <td height="20" class="pageFooter" colspan="4">  
+     <input name="next" type="button" value="OK" onclick="javascript:document.location.href='/IGRS/jsp/login/UserLoginConfirmation.jsp'">
+     </td>
+</tr>
+
+
+
+
+</tbody>
+
+
+
+<td height="305" valign="top" align="center" class="contentTabletd">
+  <table width="570" border="0" cellpadding="2" cellspacing="0" bordercolorlight="#000000" bordercolordark="#86B4CE" rules="none" class="internalTable" id="tblUser">
+    <tbody><tr>
+      <td class="pageHeader" colspan="4">
+      <table width="100%">
+        <tbody><tr>
+          <td width="82%" class="pageHeaderText">Document Search/Certified Copy</td>
+          <td width="18%" valign="bottom" class="mandatoryField">*
+          *</td>
+        </tr>
+      </tbody></table>
+      </td>
+    </tr>
+    
+    
+    
+    
+    
+    
+    
+      <tr>
+      <td colspan="4" class="sectionHeader">Search B Records</td>
+    </tr>
+    <tr>
+      <td class="leftTopFormLabel">Reference ID <span class="mandatoryField"></span></td>
+      <td width="392" colspan="3" class="lastFormValue">	CERTIFIEDCOPY23112023117876628</td>
+      
+    </tr>		
+    <tr>
+      <td colspan="4" class="sectionHeader">Search B Records</td>
+    </tr>
+    
+     
+    
+    <tr>
+            <td width="100%" class="tableFieldValue" colspan="4">
+            
+<table id="tb" style="width:100%" class="internalTable" cellspacing="0">
+<thead>
+<tr>
+<th class="tableFieldName">Select</th>
+<th class="tableFieldName">Registration Number</th>
+<th class="tableFieldName">Date Of Registration</th></tr></thead>
+<tbody>
+<tr class="odd">
+<td scope="request" class="tableFieldValue">
+              <input type="radio" name="radioButton1" value="aM+aEWgDLsqnYABhb6u5rwwpK3qdgErn6NwTQkAZ7Gs=">
+              </td>
+<td class="tableFieldValue">MP179092022A1974612</td>
+<td class="tableFieldValue">26/09/2022</td></tr>
+<tr class="even">
+<td scope="request" class="tableFieldValue">
+              <input type="radio" name="radioButton1" value="qr1JZfh5G1exgR7G0nCkMzxwKaHTbiU6SMGa/4VaBr8=">
+              </td>
+<td class="tableFieldValue">MP179152022A1981103</td>
+<td class="tableFieldValue">27/09/2022</td></tr>
+<tr class="odd">
+<td scope="request" class="tableFieldValue">
+              <input type="radio" name="radioButton1" value="BuXfsArPoNjFp/dEYBTVU1CQnWGDl1QhDsBDtA4S484=">
+              </td>
+<td class="tableFieldValue">MP179152022A11005439</td>
+<td class="tableFieldValue">03/10/2022</td></tr>
+<tr class="even">
+<td scope="request" class="tableFieldValue">
+              <input type="radio" name="radioButton1" value="+IfQ4b5MDFSkdCPKrnKR+xQ0yND+TTtrv50W6/2KSFc=">
+              </td>
+<td class="tableFieldValue">MP179152022A11029888</td>
+<td class="tableFieldValue">12/10/2022</td></tr>
+<tr class="odd">
+<td scope="request" class="tableFieldValue">
+              <input type="radio" name="radioButton1" value="+IfQ4b5MDFSkdCPKrnKR+4XKNojKwqgbSYXZCS0ePEM=">
+              </td>
+<td class="tableFieldValue">MP179152022A11029772</td>
+<td class="tableFieldValue">12/10/2022</td></tr>
+<tr class="even">
+<td scope="request" class="tableFieldValue">
+              <input type="radio" name="radioButton1" value="qalFYeWkn2EmqUvOxgSKaVsKUQiS+lnjjhu/t3B3zYg=">
+              </td>
+<td class="tableFieldValue">MP179152022A11070215</td>
+<td class="tableFieldValue">21/10/2022</td></tr>
+<tr class="odd">
+<td scope="request" class="tableFieldValue">
+              <input type="radio" name="radioButton1" value="dWIgIUrbJV/A/HKC9w6dIQ3eokOS//+gY+mfQqjJEcE=">
+              </td>
+<td class="tableFieldValue">MP179152022A11092807</td>
+<td class="tableFieldValue">02/11/2022</td></tr>
+<tr class="even">
+<td scope="request" class="tableFieldValue">
+              <input type="radio" name="radioButton1" value="rYqlXEChRI7UhYH4acTX11BO3AH0zlJDPNeGypVxkD0=">
+              </td>
+<td class="tableFieldValue">MP179092022A11093646</td>
+<td class="tableFieldValue">03/11/2022</td></tr>
+<tr class="odd">
+<td scope="request" class="tableFieldValue">
+              <input type="radio" name="radioButton1" value="rYqlXEChRI7UhYH4acTX1w0swxDrsNYdslb/I4U2OHc=">
+              </td>
+<td class="tableFieldValue">MP179092022A11098298</td>
+<td class="tableFieldValue">04/11/2022</td></tr>
+<tr class="even">
+<td scope="request" class="tableFieldValue">
+              <input type="radio" name="radioButton1" value="6TCha1oGx55S9obsY6LLFmAbtCREiI+v+aGrQ/Fp8h4=">
+              </td>
+<td class="tableFieldValue">MP179152022A11108065</td>
+<td class="tableFieldValue">07/11/2022</td></tr>
+<tr class="odd">
+<td scope="request" class="tableFieldValue">
+              <input type="radio" name="radioButton1" value="mjj62kymXk2BBeTVeIyAAS35KYiGlTMlAMvbLDgd2kU=">
+              </td>
+<td class="tableFieldValue">MP179152022A11117260</td>
+<td class="tableFieldValue">10/11/2022</td></tr>
+<tr class="even">
+<td scope="request" class="tableFieldValue">
+              <input type="radio" name="radioButton1" value="KgnKftHajnVwBMvHTrEHq8yfHcFDqrOW+V3GYi7ev+k=">
+              </td>
+<td class="tableFieldValue">MP179092022A11115570</td>
+<td class="tableFieldValue">10/11/2022</td></tr>
+<tr class="odd">
+<td scope="request" class="tableFieldValue">
+              <input type="radio" name="radioButton1" value="cW4wUI4pB80Mm+amfo0FTe1QAmjQiaSDRLfDkbGAx8w=">
+              </td>
+<td class="tableFieldValue">MP179152022A11128676</td>
+<td class="tableFieldValue">14/11/2022</td></tr>
+<tr class="even">
+<td scope="request" class="tableFieldValue">
+              <input type="radio" name="radioButton1" value="cW4wUI4pB80Mm+amfo0FTb9jk71jp395HzxO8E9EC7M=">
+              </td>
+<td class="tableFieldValue">MP179152022A11126392</td>
+<td class="tableFieldValue">14/11/2022</td></tr>
+<tr class="odd">
+<td scope="request" class="tableFieldValue">
+              <input type="radio" name="radioButton1" value="kZHmZhudGciEcnFr/MLNtBRYMicmqnI2yScQI0FGJck=">
+              </td>
+<td class="tableFieldValue">MP179152022A11156111</td>
+<td class="tableFieldValue">21/11/2022</td></tr></tbody></table><span class="pagebanner">40 items found, displaying 1 to 15.</span><span class="pagelinks">[First/Prev] <strong>1</strong>, <a href="docsearchtypeb.do?TRFS=NGI&amp;d-5468-p=2&amp;isCap=false&amp;getAction=submitAction" title="Go to page 2">2</a>, <a href="docsearchtypeb.do?TRFS=NGI&amp;d-5468-p=3&amp;isCap=false&amp;getAction=submitAction" title="Go to page 3">3</a> [<a href="docsearchtypeb.do?TRFS=NGI&amp;d-5468-p=2&amp;isCap=false&amp;getAction=submitAction">Next</a>/<a href="docsearchtypeb.do?TRFS=NGI&amp;d-5468-p=3&amp;isCap=false&amp;getAction=submitAction">Last</a>]</span></td>
+    </tr>
+          
+        
+          
+        
+          
+        
+    <tr>
+      <td colspan="4" class="sectionHeader">Requisition Fee</td>
+    </tr>
+    <tr>
+      <td class="leftTopFormLabel">Total Fee</td>
+      <td colspan="3" class="lastFormValue">0</td>
+    </tr>
+    
+
+
+    <tr height="25">
+      <td colspan="4" class="buttonSeparator"></td>
+    </tr>
+    <tr>
+            
+          </tr>
+    
+    <tr>
+      <td height="25" colspan="4" class="pageFooter">
+      
+      
+      <input name="next" type="button" value="Submit" onclick="proceedSearchB2()">
+      
+      
+      <!--
+      <input name="next" type="button" value="Submit" onClick="proceedSearchB2()"/>
+      
+      
+      -->
+      
+      
+      
+      <input type="button" value="Cancel" onclick="javascript:document.location.href='/IGRS/jsp/login/UserLoginConfirmation.jsp'">
+      </td>
+    </tr>
+    
+    
+  </tbody></table>
+  </td>

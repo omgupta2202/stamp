@@ -11,12 +11,12 @@ class Details(models.Model):
     financial_year = models.CharField(max_length=10, verbose_name='Financial Year')
     from_date = models.DateField(verbose_name='From Date')
     to_date = models.DateField(verbose_name='To Date')
-    district = models.CharField(max_length=255, null=True, blank=True)
-    tehsil = models.CharField(max_length=255, null=True, blank=True)
-    type_of_area = models.CharField(max_length=255, null=True, blank=True)
-    sub_area_type = models.CharField(max_length=255, null=True, blank=True)
-    ward_number_patwari_number = models.CharField(max_length=255, null=True, blank=True)
-    mohalla_colony_name_society_road = models.CharField(max_length=255, null=True, blank=True)
+    # district = models.CharField(max_length=255, null=True, blank=True)
+    # tehsil = models.CharField(max_length=255, null=True, blank=True)
+    # type_of_area = models.CharField(max_length=255, null=True, blank=True)
+    # sub_area_type = models.CharField(max_length=255, null=True, blank=True)
+    # ward_number_patwari_number = models.CharField(max_length=255, null=True, blank=True)
+    # mohalla_colony_name_society_road = models.CharField(max_length=255, null=True, blank=True)
     khasra_number = models.CharField(max_length=255, null=True, blank=True)
     transacting_party_first_name = models.CharField(max_length=255, verbose_name='Transacting Party First Name', blank=True, null=True)
     transacting_party_middle_name = models.CharField(max_length=255, verbose_name='Transacting Party Middle Name', blank=True, null=True)
@@ -76,3 +76,43 @@ class Tehsil(models.Model):
 
     def _str_(self):
         return self.name
+
+class TypeOfArea(models.Model):
+    name = models.CharField(max_length=150)
+    tehsil = models.ForeignKey(Tehsil, on_delete=models.PROTECT, related_name="typeofarea_tehsil")
+    is_active = models.BooleanField(default=True)
+
+    def _str_(self):
+        return self.name
+
+class SubArea(models.Model):
+    name = models.CharField(max_length=150)
+    typeofarea = models.ForeignKey(TypeOfArea, on_delete=models.PROTECT, related_name="subarea_typeofarea")
+    is_active = models.BooleanField(default=True)
+
+    def _str_(self):
+        return self.name
+
+class WardPatwariNumber(models.Model):
+    name = models.CharField(max_length=150)
+    subarea = models.ForeignKey(SubArea, on_delete=models.PROTECT, related_name="ward_subarea")
+    is_active = models.BooleanField(default=True)
+
+    def _str_(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = 'WardPatwariNumber'
+        verbose_name_plural = 'WardNumber/PatwariNumber'
+    
+class SocietyName(models.Model):
+    name = models.CharField(max_length=150)
+    ward = models.ForeignKey(WardPatwariNumber, on_delete=models.PROTECT, related_name="society_ward")
+    is_active = models.BooleanField(default=True)
+
+    def _str_(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'SocietyName'
+        verbose_name_plural = 'Mohalla/Colony/Society/Road'
