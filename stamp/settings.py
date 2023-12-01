@@ -28,12 +28,12 @@ DEBUG = True
 ALLOWED_HOSTS = ['*',
                  '127.0.0.1',
                  'localhost',
-                 'e4e9-49-36-183-88.ngrok-free.app']
+                 '3d1d-125-21-249-98.ngrok-free.app']
 
 
 # Application definition
 CORS_ALLOW_ALL_ORIGINS= True
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000/', 'https://e4e9-49-36-183-88.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000/', 'https://3d1d-125-21-249-98.ngrok-free.app']
 
 
 
@@ -123,7 +123,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
