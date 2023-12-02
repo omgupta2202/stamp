@@ -16,6 +16,7 @@ from datetime import datetime
 from django.core.serializers import serialize
 import urllib3
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 def home(request):
     return render(request, 'app/app.html')
@@ -109,15 +110,20 @@ def open_login_page(request):
     transacting_party_father_name = details_instance.transacting_party_father_name
     organization_name = details_instance.organization_name
     
-    # chrome_options = Options()
-    # chrome_options.add_argument('--headless')  # Run Chrome in headless mode
-
-    # driver = webdriver.Chrome(options=chrome_options)
-    driver = webdriver.Chrome()
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("window-size=1400,1500")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("start-maximized")
+    chrome_options.add_argument("enable-automation")
+    chrome_options.add_argument("--disable-infobars")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.binary_location = '/home/ubuntu/google-chrome'
+    chrome_driver_path = "/home/ubuntu/chromedriver"
+    service = Service(chrome_driver_path)
+    driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.get('https://www.mpigr.gov.in:8080/IGRS/')
-    # if request.method == 'POST':
-    #     username = request.POST.get('username')
-    #     password = request.POST.get('password')
 
     captcha_filename = f'captcha_{username}_value.txt'
     file_path = os.path.join(settings.MEDIA_ROOT, captcha_filename)
